@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Form = (props) => {
     const [team, addTeam] = useState({
@@ -30,6 +30,11 @@ const Form = (props) => {
             role: ""
         })
     }
+    
+    useEffect(() => {
+        addTeam(props.memberToEdit);
+    }, [props.memberToEdit])
+
     return (
         <form onSubmit={handleSubmit}>
             <div className="name-label">

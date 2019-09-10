@@ -10,16 +10,19 @@ function App() {
     role: "Front-End Developer"
 }])
 
-const [memberToEdit, setMemberToEdit] = useState({})
+const [memberToEdit, setMemberToEdit] = useState({
+  name: "",
+  email: "",
+  role: ""
+})
 
 const handleEdit = (event) => {
-  setMemberToEdit();
-  console.log(memberToEdit)
+  setMemberToEdit(member[event.target.value]);
 }
   return (
     <div className="App">
       <h1>Build Your Team!</h1>
-     <Form addMember={addMember} member={member} />
+     <Form addMember={addMember} member={member} memberToEdit={memberToEdit} />
      <div className="team">
      {member.map((item, index) => {
        return (
@@ -27,7 +30,7 @@ const handleEdit = (event) => {
            <h2>{item.name}</h2>
            <p>{item.email}</p>
            <p>{item.role}</p>
-           <button onClick={handleEdit}>Edit</button>
+           <button value={index} onClick={handleEdit}>Edit</button>
         </div>
        )
      })}
