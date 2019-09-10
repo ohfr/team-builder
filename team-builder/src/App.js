@@ -4,14 +4,34 @@ import './App.css';
 import Form from './Components/Form';
 
 function App() {
-  const [team, addTeam] =useState({
-    name: "",
-    email: "",
-    role: ""
-})
+  const [member, addMember] =useState([{
+    name: "Daniel",
+    email: "daniel@email.com",
+    role: "Front-End Developer"
+}])
+
+const [memberToEdit, setMemberToEdit] = useState({})
+
+const handleEdit = (event) => {
+  setMemberToEdit();
+  console.log(memberToEdit)
+}
   return (
     <div className="App">
-     <Form addTeam={addTeam} />
+      <h1>Build Your Team!</h1>
+     <Form addMember={addMember} member={member} />
+     <div className="team">
+     {member.map((item, index) => {
+       return (
+         <div className="team-card" key={index} >
+           <h2>{item.name}</h2>
+           <p>{item.email}</p>
+           <p>{item.role}</p>
+           <button onClick={handleEdit}>Edit</button>
+        </div>
+       )
+     })}
+     </div>
     </div>
   );
 }
